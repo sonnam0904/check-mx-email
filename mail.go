@@ -83,14 +83,9 @@ func main() {
 	if err != nil {
 		PrintErrorResponse(err)
 	}
-
-	var (
-		testHost    = "smtp.vccorp.vn"
-		testMail = "sonnguyennam@vccorp.vn"
-	)
-
-	fmt.Printf("\nRcpt by: %v --> %v\n", testMail, email)
-	err = CheckRCPT(testHost, testMail, email)
+	var _, host string
+	_, host = split(email)
+	err = CheckRCPT("smtp."+host, email, email)
 	if err != nil {
 		PrintErrorResponse(err)
 	}
